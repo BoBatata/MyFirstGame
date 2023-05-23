@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
+    public static PlayerScript instance;
+
     private Transform playerTransform;
     private Rigidbody2D rigidbody;
     private bool isOnFloor;
@@ -18,14 +20,7 @@ public class PlayerScript : MonoBehaviour
 
         playerTransform = GetComponent<Transform>();
         rigidbody = GetComponent<Rigidbody2D>();
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-
+        instance = this;
 
     }
 
@@ -70,5 +65,10 @@ public class PlayerScript : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
         Destroy(gameObject);
+    }
+
+    public Transform GetPlayerTransform()
+    {
+        return playerTransform;
     }
 }
